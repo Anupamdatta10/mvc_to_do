@@ -41,6 +41,17 @@ exports.create = function (req, res) {
         }
     } catch (err) {
         res.send(err);
-    }
+    }};
 
+
+exports.update=function(req,res){
+    To_do.update(req.params.id,function (err, employee) {
+        console.log('controller')
+        if (err)
+            res.send(err);
+        console.log('res', employee);
+        res.send(employee);
+
+
+})
 };
