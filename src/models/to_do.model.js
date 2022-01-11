@@ -34,5 +34,18 @@ exports.createModel=function(newToDo, result){
             console.log('employees : ', res);  
             result(null, res);
         }
-    });  
+    }); 
+
+exports.update = function(id,em, result){
+    dbConn.query("UPDATE to_do SET T_Name=?,Status=? WHERE T_id =?", [em.name, em.status,id], function (err, res) {
+        if(err) {
+            console.log("error: ", err);
+            result(null, err);
+        }
+        else{
+            console.log('employees : ', res);  
+            result(null, res);
+        }
+      }); 
+  };
 }
