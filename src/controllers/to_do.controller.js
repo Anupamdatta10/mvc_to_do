@@ -41,17 +41,38 @@ exports.create = function (req, res) {
         }
     } catch (err) {
         res.send(err);
-    }};
+    }
+};
 
 
 exports.update=function(req,res){
-    To_do.update(req.params.id,function (err, employee) {
+    console.log("=========controller=========");
+    To_do.updateModel(req.params.id,req.body,function (err, employee) {
         console.log('controller')
         if (err)
             res.send(err);
         console.log('res', employee);
         res.send(employee);
+});
+};
 
+exports.delete = function (req, res) {
+    To_do.deleteModel(req.params.id,function(err,employee){
+        console.log("controller");
+        if(err)
+        res.send(err);
+            console.log('res', employee);
+            res.send(employee);
 
-})
+    })
+};
+
+exports.findByUserId = function (req, res) {
+    To_do.findByUserId(req.params.id,function (err, employee) {
+        console.log('controller')
+        if (err)
+            res.send(err);
+        console.log('res', employee);
+        res.send(employee);
+    });
 };

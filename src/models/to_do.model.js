@@ -36,8 +36,12 @@ exports.createModel=function(newToDo, result){
         }
     }); 
 
-exports.update = function(id,em, result){
-    dbConn.query("UPDATE to_do SET T_Name=?,Status=? WHERE T_id =?", [em.name, em.status,id], function (err, res) {
+
+}
+
+exports.updateModel = function(id,body, result){
+    try{
+    dbConn.query("UPDATE to_do SET ? WHERE T_id =?",[ body,id], function (err, res) {
         if(err) {
             console.log("error: ", err);
             result(null, err);
@@ -47,5 +51,34 @@ exports.update = function(id,em, result){
             result(null, res);
         }
       }); 
-  };
+    }catch(err)
+    {
+        result(null, err);
+    }
+};
+
+exports.deleteModel = function(id, result){
+    dbConn.query("delete from to_do WHERE T_id =?",id, function (err, res) {
+        if(err) {
+            console.log("error: ", err);
+            result(null, err);
+        }
+        else{
+            console.log('employees : ', res);  
+            result(null, res);
+        }
+      }); 
+};
+
+exports.findByUserId=function(id,result){
+    dbConn.query("Select * from to_do ,contact where to_do.user_id=contact.user_id and to_do.user_id =?",id, function (err, res) {
+        if(err) {
+            console.log("error: ", err);
+            result(null, err);
+        }
+        else{
+            console.log('employees : ', res);  
+            result(null, res);
+        }
+    });  
 }
