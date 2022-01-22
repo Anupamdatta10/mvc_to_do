@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-
+const cors = require('cors');
 // create express app
 const app = express();
 
@@ -8,10 +8,13 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 // parse requests of content-type - application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: true }))
+//app.use(bodyParser.urlencoded({ extended: true }))
 
 // parse requests of content-type - application/json
-app.use(bodyParser.json())
+//app.use(bodyParser.json())
+app.options('*', cors());
+app.use(express.json({ limit: '50mb' }));
+app.use(express.urlencoded({extended:false}));
 
 // define a root route
 app.get('/', (req, res) => {
