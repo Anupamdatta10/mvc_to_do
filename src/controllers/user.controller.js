@@ -53,3 +53,23 @@ exports.findAll = function (req, res) {
         res.send(employee);
     });
 };
+exports.delete = function (req, res) {
+    Users.deleteModel(req.params.id,function(err,employee){
+        console.log("controller");
+        if(err)
+        res.send(err);
+            console.log('res', employee);
+            res.send(employee);
+
+    })
+};
+
+exports.findById = function (req, res) {
+    Users.findById(req.params.id,function (err, employee) {
+        console.log('controller')
+        if (err)
+            res.send(err);
+        console.log('res', employee);
+        res.send(employee);
+    });
+};

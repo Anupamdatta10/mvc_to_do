@@ -44,3 +44,29 @@ exports.findAllQM=function(result){
         }
     });  
 }
+
+exports.deleteModel = function(id, result){
+    dbConn.query("delete from users WHERE user_id =?",id, function (err, res) {
+        if(err) {
+            console.log("error: ", err);
+            result(null, err);
+        }
+        else{
+            console.log('employees : ', res);  
+            result(null, res);
+        }
+      }); 
+};
+
+exports.findById=function(id,result){
+    dbConn.query("Select * from users where user_id =?",id, function (err, res) {
+        if(err) {
+            console.log("error: ", err);
+            result(null, err);
+        }
+        else{
+            console.log('employees : ', res);  
+            result(null, res);
+        }
+    });  
+}

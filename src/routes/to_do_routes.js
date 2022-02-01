@@ -12,5 +12,7 @@ router.delete('/:id', to_do_Controller.delete);
 router.post('/users/create',users.create);
 router.patch('/users/update/:id',users.update);
 router.get('/users/list',users.findAll);
+router.get('/users/list/:id', users.findById);
+router.delete('/users/delete/:id', users.delete);
 
 module.exports = router;
